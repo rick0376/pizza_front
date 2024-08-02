@@ -69,7 +69,7 @@ export default function Product({ categoryList }: CategoryProps){
     try{
       const data = new FormData();
 
-      if(name === '' || price === '' || description === '' || imageAvatar === null){
+      if(name === '' || price === '' || description === '' ){
         toast.error("Preencha todos os campos!");
         return;
       }
@@ -78,8 +78,7 @@ export default function Product({ categoryList }: CategoryProps){
       data.append('price', price);
       data.append('description', description);
       data.append('category_id', categories[categorySelected].id);
-      data.append('file', imageAvatar);
-
+      
       const apiClient = setupAPIClient();
 
       await apiClient.post('/product', data);
@@ -94,7 +93,7 @@ export default function Product({ categoryList }: CategoryProps){
     setName('');
     setPrice('');
     setDescription('')
-    setImageAvatar(null);
+    //setImageAvatar(null);
     setAvatarUrl('');
 
   }
